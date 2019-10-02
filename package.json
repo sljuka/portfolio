@@ -5,12 +5,5 @@
   "main": "index.js",
   "author": "David Sljukic",
   "license": "MIT",
-  "private": true,
-  "scripts": {
-    "dev-blog-server": "ts-node-dev --respawn --transpileOnly src/blog-server/server.ts"
-  },
-  "devDependencies": {
-    "ts-node-dev": "^1.0.0-pre.43",
-    "typescript": "^3.6.3"
-  }
+  "private": true
 }
