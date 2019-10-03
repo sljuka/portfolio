@@ -22,7 +22,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        loader: ["react-hot-loader/webpack", "ts-loader"]
+        loader: ["react-hot-loader/webpack", "babel-loader"]
       }
     ]
   }

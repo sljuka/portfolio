@@ -1,8 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const SuperSpan = styled.span`
+  font-size: 2em;
+`;
 
 export const MainPage = () => (
   <div>
-    <span>Main page sss ssss</span>
+    <SuperSpan>Main page sss ssss</SuperSpan>
   </div>
 );

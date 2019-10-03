@@ -8,6 +8,7 @@ import { StaticRouter } from "react-router-dom";
 import { Request, Response } from "express";
 import ReactDOMServer from "react-dom/server";
 import { getDataFromTree } from "@apollo/react-ssr";
+import { ServerStyleSheet, StyleSheetManager } from "styled-components";
 import { Layout } from "./Layout";
 import { Html } from "./html";
 
@@ -39,10 +40,15 @@ export const apolloMiddleware = (req: Request, res: Response) => {
 
   getDataFromTree(App).then(() => {
     // We are ready to render for real
-    const content = ReactDOMServer.renderToString(App);
+    const sheet = new ServerStyleSheet();
+    const content = ReactDOMServer.renderToString(sheet.collectStyles(App));
     const initialState = client.extract();
 
-    const html = <Html content={content} state={initialState} />;
+    const styleTags = sheet.getStyleTags();
+
+    const html = (
+      <Html style={styleTags} content={content} state={initialState} />
+    );
 
     res.status(200);
     res.send(`<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`);
