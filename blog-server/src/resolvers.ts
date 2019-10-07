@@ -1,10 +1,12 @@
 const blogs = [
   {
+    id: 1,
     title: "Harry Potter and the Chamber of Secrets",
     author: "J.K. Rowling",
     content: "This is a book"
   },
   {
+    id: 2,
     title: "Jurassic Park",
     author: "Michael Crichton",
     content: "This is also a book"

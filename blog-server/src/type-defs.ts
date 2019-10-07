@@ -5,6 +5,7 @@ import { gql } from "apollo-server";
 // your data.
 export const typeDefs = gql`
   type Blog {
+    id: ID
     title: String
     author: String
     content: String
