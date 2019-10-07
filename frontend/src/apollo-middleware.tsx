@@ -8,9 +8,10 @@ import { StaticRouter } from "react-router-dom";
 import { Request, Response } from "express";
 import ReactDOMServer from "react-dom/server";
 import { getDataFromTree } from "@apollo/react-ssr";
-import { ServerStyleSheet, StyleSheetManager } from "styled-components";
+import { ServerStyleSheet, ThemeProvider } from "styled-components";
 import { Layout } from "./Layout";
 import { Html } from "./html";
+import { theme } from "./theme";
 
 export const apolloMiddleware = (req: Request, res: Response) => {
   const client = new ApolloClient({
@@ -32,9 +33,11 @@ export const apolloMiddleware = (req: Request, res: Response) => {
   // The client-side App will instead use <BrowserRouter>
   const App = (
     <ApolloProvider client={client}>
-      <StaticRouter location={req.url} context={context}>
-        <Layout />
-      </StaticRouter>
+      <ThemeProvider theme={theme}>
+        <StaticRouter location={req.url} context={context}>
+          <Layout />
+        </StaticRouter>
+      </ThemeProvider>
     </ApolloProvider>
   );
 

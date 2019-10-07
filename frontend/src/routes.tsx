@@ -1,5 +1,7 @@
 import { MainPage } from "./MainPage";
 import { AnotherPage } from "./AnotherPage";
+import { BlogPage } from "./BlogPage";
+import { WorkPage } from "./WorkPage";
 
 const routes = [
   {
@@ -11,8 +13,20 @@ const routes = [
   {
     path: "/another",
     name: "another",
-    exact: false,
+    exact: true,
     component: AnotherPage
+  },
+  {
+    path: "/blog",
+    name: "blog",
+    exact: true,
+    component: BlogPage
+  },
+  {
+    path: "/work",
+    name: "work",
+    exact: true,
+    component: WorkPage
   }
 ];
 

@@ -9,6 +9,10 @@ type Props = {
 export const Html = ({ content, state, style }: Props) => {
   return (
     <html>
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+      ></meta>
       {style && <head dangerouslySetInnerHTML={{ __html: style }}></head>}
       <body>
         <div id="root" dangerouslySetInnerHTML={{ __html: content }} />

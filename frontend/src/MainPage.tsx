@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const SuperSpan = styled.span`
-  font-size: 2em;
+  font-size: 2rem;
 `;
 
 export const MainPage = () => (
   <div>
-    <SuperSpan>Main page sss ssss</SuperSpan>
+    <SuperSpan>Hi, I'm David Sljukic, software engineer</SuperSpan>
   </div>
 );

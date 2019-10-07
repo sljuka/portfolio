@@ -6,6 +6,8 @@ import { createHttpLink } from "apollo-link-http";
 import { BrowserRouter } from "react-router-dom";
 import { Layout } from "../Layout";
 import { hot } from "react-hot-loader/root";
+import { ThemeProvider } from "styled-components";
+import { theme } from "../theme";
 
 const client = new ApolloClient({
   ssrMode: true,
@@ -18,14 +20,17 @@ const client = new ApolloClient({
     //   cookie: req.header("Cookie")
     // }
   }),
-  cache: new InMemoryCache()
+  // @ts-ignore
+  cache: new InMemoryCache().restore(window.__APOLLO_STATE__)
 });
 
 const App = () => (
   <ApolloProvider client={client}>
-    <BrowserRouter>
-      <Layout />
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Layout />
+      </BrowserRouter>
+    </ThemeProvider>
   </ApolloProvider>
 );
 
