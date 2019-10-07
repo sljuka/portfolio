@@ -7,7 +7,9 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpileOnly src/server.ts"
+    "dev": "ts-node-dev --respawn --transpileOnly src/server.ts",
+    "clean": "rm -rf ./dist/* ",
+    "build": "tsc "
   },
   "devDependencies": {
     "ts-node-dev": "^1.0.0-pre.43",
