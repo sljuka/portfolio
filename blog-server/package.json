@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpileOnly src/server.ts",
     "clean": "rm -rf ./dist/* ",
-    "build": "tsc "
+    "build": "tsc ",
+    "start": "node ./dist/server.js"
   },
   "devDependencies": {
     "ts-node-dev": "^1.0.0-pre.43",

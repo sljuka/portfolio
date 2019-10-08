@@ -1,0 +1,15 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: blog-server
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: blog-server
+      labels:
+        app: blog-server
+    spec:
+      containers:
+        - image: mravatomski/blog-server:v1
+          name: nodejs-blog-server

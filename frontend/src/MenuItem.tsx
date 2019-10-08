@@ -13,9 +13,9 @@ type Props = RouteComponentProps & {
 };
 
 type ListItemProps = {
-  active: boolean;
+  active?: number;
   theme: DefaultTheme;
-  exagerate?: boolean;
+  exagerate?: number;
 };
 
 const StyledLink = styled(RouterLink)`
@@ -54,7 +54,11 @@ const StyledLink = styled(RouterLink)`
 
 export const MenuItem = withRouter(
   ({ location: { pathname }, to, text, exagerate }: Props) => (
-    <StyledLink active={pathname === to} to={to} exagerate={exagerate}>
+    <StyledLink
+      active={pathname === to ? 1 : undefined}
+      to={to}
+      exagerate={exagerate ? 1 : undefined}
+    >
       {text}
     </StyledLink>
   )
