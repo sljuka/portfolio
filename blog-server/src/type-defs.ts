@@ -9,6 +9,7 @@ export const typeDefs = gql`
     title: String
     author: String
     content: String
+    description: String
   }
 
   type Query {
