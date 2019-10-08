@@ -1,15 +1,23 @@
 import React from "react";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
+import { BlogList } from "./BlogList";
+import styled from "styled-components";
 
 const GET_BLOGS = gql`
   {
     blogs {
       id
       title
-      content
+      description
     }
   }
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const BlogPage = () => {
@@ -19,17 +27,8 @@ export const BlogPage = () => {
   if (error) return <span>{`Error! ${error.message}`}</span>;
 
   return (
-    <div>
-      <ul>
-        {data.blogs.map(
-          (blog: { id: number; title: string; content: string }) => (
-            <div key={blog.id}>
-              <h1>{blog.title}</h1>
-              <p>{blog.content}</p>
-            </div>
-          )
-        )}
-      </ul>
-    </div>
+    <Wrapper>
+      <BlogList blogs={data.blogs} />
+    </Wrapper>
   );
 };

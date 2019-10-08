@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${props => props.theme.colors.white};
     margin: 0px;
+    font-family: sans-serif;
   }
 `;
 
@@ -16,7 +17,9 @@ const Nav = styled.nav`
   border-bottom: 1px solid ${props => props.theme.colors.lightGray};
 `;
 
-const Wrapper = styled.div``;
+const PageWrapper = styled.div`
+  background-color: ${props => props.theme.colors.darkWhite};
+`;
 
 const Menu = styled.ul`
   background-color: ${props => props.theme.colors.white}
@@ -26,12 +29,12 @@ const Menu = styled.ul`
   max-width: 960px;
   line-height: 20px;
   display: flex;
-  list-style: none;
+list-style: none;
 `;
 
 export const Layout = () => {
   return (
-    <Wrapper>
+    <div>
       <GlobalStyle />
       <Nav>
         <Menu>
@@ -41,11 +44,13 @@ export const Layout = () => {
           <MenuItem to="/another" text="Contact" />
         </Menu>
       </Nav>
-      <Switch>
-        {routes.map(route => (
-          <Route key={route.name} {...route} />
-        ))}
-      </Switch>
-    </Wrapper>
+      <PageWrapper>
+        <Switch>
+          {routes.map(route => (
+            <Route key={route.name} {...route} />
+          ))}
+        </Switch>
+      </PageWrapper>
+    </div>
   );
 };
