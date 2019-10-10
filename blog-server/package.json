@@ -10,9 +10,13 @@
     "dev": "ts-node-dev --respawn --transpileOnly src/server.ts",
     "clean": "rm -rf ./dist/* ",
     "build": "tsc ",
-    "start": "node ./dist/server.js"
+    "start": "node ./dist/server.js",
+    "test": "jest"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
     "ts-node-dev": "^1.0.0-pre.43",
     "typescript": "^3.6.3"
   },
