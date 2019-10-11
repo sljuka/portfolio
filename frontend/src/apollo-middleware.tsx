@@ -5,7 +5,7 @@ import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { StaticRouter } from "react-router-dom";
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import ReactDOMServer from "react-dom/server";
 import { getDataFromTree } from "@apollo/react-ssr";
 import { ServerStyleSheet, ThemeProvider } from "styled-components";
@@ -13,7 +13,11 @@ import { Layout } from "./Layout";
 import { Html } from "./html";
 import { theme } from "./theme";
 
-export const apolloMiddleware = (req: Request, res: Response) => {
+export const apolloMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const client = new ApolloClient({
     ssrMode: true,
     // Remember that this is the interface the SSR server will use to connect to the
@@ -41,20 +45,22 @@ export const apolloMiddleware = (req: Request, res: Response) => {
     </ApolloProvider>
   );
 
-  getDataFromTree(App).then(() => {
-    // We are ready to render for real
-    const sheet = new ServerStyleSheet();
-    const content = ReactDOMServer.renderToString(sheet.collectStyles(App));
-    const initialState = client.extract();
+  getDataFromTree(App)
+    .then(() => {
+      // We are ready to render for real
+      const sheet = new ServerStyleSheet();
+      const content = ReactDOMServer.renderToString(sheet.collectStyles(App));
+      const initialState = client.extract();
 
-    const styleTags = sheet.getStyleTags();
+      const styleTags = sheet.getStyleTags();
 
-    const html = (
-      <Html style={styleTags} content={content} state={initialState} />
-    );
+      const html = (
+        <Html style={styleTags} content={content} state={initialState} />
+      );
 
-    res.status(200);
-    res.send(`<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`);
-    res.end();
-  });
+      res.status(200);
+      res.send(`<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`);
+      res.end();
+    })
+    .catch(e => next(e));
 };

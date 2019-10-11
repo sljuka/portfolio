@@ -1,3 +1,4 @@
 import React from "react";
+import { wip } from "./wip";
 
-export const WorkPage = () => <div>Under construction</div>;
+export const WorkPage = wip(() => <div>Under construction</div>);

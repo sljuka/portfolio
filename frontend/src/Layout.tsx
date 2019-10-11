@@ -41,7 +41,7 @@ export const Layout = () => {
           <MenuItem to="/" text="David Šljukić" exagerate />
           <MenuItem to="/work" text="Work" />
           <MenuItem to="/blog" text="Blog" />
-          <MenuItem to="/another" text="Contact" />
+          <MenuItem to="/contact" text="Contact" />
         </Menu>
       </Nav>
       <PageWrapper>

@@ -1,5 +1,5 @@
 import { MainPage } from "./MainPage";
-import { AnotherPage } from "./AnotherPage";
+import { ContactPage } from "./ContactPage";
 import { BlogPage } from "./BlogPage";
 import { WorkPage } from "./WorkPage";
 
@@ -11,10 +11,10 @@ const routes = [
     component: MainPage
   },
   {
-    path: "/another",
+    path: "/contact",
     name: "another",
     exact: true,
-    component: AnotherPage
+    component: ContactPage
   },
   {
     path: "/blog",
