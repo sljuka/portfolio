@@ -34,4 +34,6 @@ const App = () => (
   </ApolloProvider>
 );
 
-export default hot(App);
+const Component = process.env["NODE_ENV"] === "production" ? App : hot(App);
+
+export default Component;

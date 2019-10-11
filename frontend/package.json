@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node ./dist/server.js"
+    "dev": "node ./dist/dev-server.js",
+    "clean": "rm -rf ./dist/* ",
+    "build": "NODE_ENV=production tsc ",
+    "start": "NODE_ENV=production node ./dist/server.js"
   },
   "repository": {
     "type": "git",
