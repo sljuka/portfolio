@@ -17,6 +17,11 @@ createApp()
   })
   .use(express.static(PUBLIC_DIR))
   .use(apolloMiddleware)
+  .get("/", (_, res) => {
+    res.status(200);
+    res.send("I'm fine");
+    res.end();
+  })
   .listen(3000, () => {
     console.log("Listening at http://localhost:3000/");
   });
