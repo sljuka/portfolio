@@ -3,7 +3,7 @@ import webpack from "webpack";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import webpackDevMiddleware from "webpack-dev-middleware";
 // @ts-ignore
-import webpackConfig from "../webpack.config.js";
+import webpackConfig from "../webpack.config.dev.js";
 import { apolloMiddleware } from "./apollo-middleware";
 
 const config = {

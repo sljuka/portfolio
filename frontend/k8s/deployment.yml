@@ -11,5 +11,5 @@ spec:
         app: portfolio
     spec:
       containers:
-        - image: mravatomski/portfolio:v1
+        - image: mravatomski/portfolio:v2
           name: portfolio

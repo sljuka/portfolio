@@ -3,10 +3,10 @@ const path = require("path");
 
 module.exports = {
   devtool: "source-map",
-  mode: "development",
+  mode: "production",
   entry: "./src/index.tsx",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "public"),
     filename: "bundle.js",
     publicPath: "/"
   },
@@ -16,13 +16,15 @@ module.exports = {
       "react-dom": "@hot-loader/react-dom"
     }
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  optimization: {
+    usedExports: true
+  },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        loader: ["react-hot-loader/webpack", "babel-loader"]
+        loader: ["babel-loader"]
       }
     ]
   }
