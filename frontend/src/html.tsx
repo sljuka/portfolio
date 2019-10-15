@@ -25,6 +25,7 @@ export const Html = ({ content, state, style }: Props) => {
           }}
         />
         <script src="/bundle.js" defer></script>
+        <script src="/kkk.js" defer></script>
       </body>
     </html>
   );

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node ./dist/dev-server.js",
-    "clean": "rm -rf ./dist/* ",
+    "clean": "rm -rf ./dist/* ./public/*",
     "build": "NODE_ENV=production webpack && tsc ",
     "start": "NODE_ENV=production node ./dist/server.js"
   },
@@ -58,6 +58,7 @@
     "babel-polyfill": "^6.23.0",
     "babel-preset-latest": "^6.22.0",
     "babel-preset-react": "^6.23.0",
+    "copy-webpack-plugin": "^5.0.4",
     "react-hot-loader": "^4.12.14",
     "source-map-explorer": "^2.1.0",
     "source-map-loader": "^0.2.4",

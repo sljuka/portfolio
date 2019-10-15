@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import { Route, Switch } from "react-router-dom";
 import routes from "./routes";
 import { MenuItem } from "./MenuItem";
+import { NotFound } from "./NotFound";
 
 const GlobalStyle = createGlobalStyle`
   html { font-size: 10px; }
@@ -49,6 +50,7 @@ export const Layout = () => {
           {routes.map(route => (
             <Route key={route.name} {...route} />
           ))}
+          <Route component={NotFound} />
         </Switch>
       </PageWrapper>
     </div>

@@ -1,5 +1,5 @@
-const webpack = require("webpack");
 const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   devtool: "source-map",
@@ -19,6 +19,7 @@ module.exports = {
   optimization: {
     usedExports: true
   },
+  plugins: [new CopyPlugin([{ from: "assets" }])],
   module: {
     rules: [
       {

@@ -18,6 +18,9 @@ export const apolloMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
+  const acceptHeader = req.headers.accept;
+  if (!acceptHeader || !acceptHeader.includes("text/html")) return next();
+
   const client = new ApolloClient({
     ssrMode: true,
     // Remember that this is the interface the SSR server will use to connect to the

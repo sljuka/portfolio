@@ -1,7 +1,8 @@
 const webpack = require("webpack");
 const prodWebpackConfig = require("./webpack.config");
+const CopyPlugin = require("copy-webpack-plugin");
 
-const { entry, output, module, devtool } = prodWebpackConfig;
+const { entry, output, module: webpackModule, devtool } = prodWebpackConfig;
 
 module.exports = {
   devtool,
@@ -14,6 +15,9 @@ module.exports = {
       "react-dom": "@hot-loader/react-dom"
     }
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
-  module
+  plugins: [
+    new CopyPlugin([{ from: "assets", to: "public" }]),
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  module: webpackModule
 };

@@ -27,6 +27,12 @@ const routes = [
     name: "work",
     exact: true,
     component: WorkPage
+  },
+  {
+    path: "/",
+    name: "work",
+    exact: true,
+    component: WorkPage
   }
 ];
 
