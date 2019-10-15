@@ -6,6 +6,10 @@ import { apolloMiddleware } from "./apollo-middleware";
 const PUBLIC_DIR = path.join(__dirname, "../public");
 
 createApp()
+  .use((req, _, next) => {
+    console.log("called:", req.path);
+    next();
+  })
   .use(express.static(PUBLIC_DIR))
   .use(apolloMiddleware)
   .listen(3000, () => {
