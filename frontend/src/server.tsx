@@ -1,11 +1,11 @@
 import { createApp } from "./create-app";
-import express, { Response } from "express";
+import express, { Response, Request } from "express";
 import path from "path";
 import { apolloMiddleware } from "./apollo-middleware";
 
 const PUBLIC_DIR = path.join(__dirname, "../public");
 
-const healthCheck = (res: Response) => {
+const healthCheck = (_req: Request, res: Response) => {
   res.status(200);
   res.send("I'm fine");
   res.end();
