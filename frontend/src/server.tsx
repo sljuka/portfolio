@@ -12,10 +12,6 @@ const healthCheck = (res: Response) => {
 };
 
 createApp()
-  .use((req, _, next) => {
-    console.log("called:", req.path, req.headers);
-    next();
-  })
   .use(express.static(PUBLIC_DIR))
   .use(apolloMiddleware)
   .get("/healthz", healthCheck)
