@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/backends: '{"k8s-be-31025--c0840b76e90c30ab":"HEALTHY"}'
+    ingress.kubernetes.io/forwarding-rule: k8s-fw-default-sljk-ingress--c0840b76e90c30ab
+    ingress.kubernetes.io/target-proxy: k8s-tp-default-sljk-ingress--c0840b76e90c30ab
+    ingress.kubernetes.io/url-map: k8s-um-default-sljk-ingress--c0840b76e90c30ab
+  creationTimestamp: "2019-10-15T12:38:20Z"
+  generation: 17
+  name: sljk-ingress
+  namespace: default
+  resourceVersion: "1397998"
+  selfLink: /apis/extensions/v1beta1/namespaces/default/ingresses/sljk-ingress
+  uid: abc30bb5-ef48-11e9-bb97-42010a9c0038
+spec:
+  backend:
+    serviceName: portfolio-service
+    servicePort: 80
+status:
+  loadBalancer:
+    ingress:
+      - ip: 35.201.110.79

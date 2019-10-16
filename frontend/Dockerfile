@@ -7,8 +7,8 @@ RUN yarn build
 
 FROM node:10-alpine AS ts-prod
 WORKDIR /app
-COPY --from=ts-builder ./app/dist ./dist
-COPY --from=ts-builder ./app/public ./public
 COPY package.json yarn.lock ./
 RUN yarn install --production
+COPY --from=ts-builder ./app/dist ./dist
+COPY --from=ts-builder ./app/public ./public
 CMD yarn start

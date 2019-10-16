@@ -16,7 +16,7 @@ module.exports = {
     }
   },
   plugins: [
-    new CopyPlugin([{ from: "assets", to: "public" }]),
+    new CopyPlugin([{ from: "assets" }]),
     new webpack.HotModuleReplacementPlugin()
   ],
   module: webpackModule
