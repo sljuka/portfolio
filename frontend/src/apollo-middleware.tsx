@@ -65,5 +65,5 @@ export const apolloMiddleware = (
       res.send(`<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`);
       res.end();
     })
-    .catch(e => next(e));
+    .catch(next);
 };
