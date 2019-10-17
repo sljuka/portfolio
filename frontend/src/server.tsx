@@ -12,8 +12,8 @@ const healthCheck = (_req: Request, res: Response) => {
 };
 
 createApp()
-  .use((req, res, next) => {
-    console.log("called", req.path, req.headers);
+  .use((req, _res, next) => {
+    if (req.path != "/healthz") console.log("called", req.path, req.headers);
     next();
   })
   .use(express.static(PUBLIC_DIR))
