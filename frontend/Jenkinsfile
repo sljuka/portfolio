@@ -1,0 +1,83 @@
+pipeline {
+
+  environment {
+    PROJECT = "REPLACE_WITH_YOUR_PROJECT_ID"
+    APP_NAME = "gceme"
+    FE_SVC_NAME = "${APP_NAME}-frontend"
+    CLUSTER = "jenkins-cd"
+    CLUSTER_ZONE = "us-east1-d"
+    IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+    JENKINS_CRED = "${PROJECT}"
+  }
+
+  agent {
+    kubernetes {
+      label 'sample-app'
+      defaultContainer 'jnlp'
+      yaml """
+apiVersion: v1
+kind: Pod
+metadata:
+labels:
+  component: ci
+spec:
+  # Use service account that can deploy to all namespaces
+  serviceAccountName: cd-jenkins
+  containers:
+  - name: kubectl
+    image: gcr.io/cloud-builders/kubectl
+    command:
+    - cat
+    tty: true
+"""
+}
+  }
+  stages {
+    stage('Test') {
+      steps {
+        container('gcloud') {
+          echo "Testing"
+        }
+      }
+    }
+    stage('Build and push image with Container Builder') {
+      steps {
+        container('gcloud') {
+          echo "Build and push image with Container Builder"
+        }
+      }
+    }
+    stage('Deploy Canary') {
+      // Canary branch
+      when { branch 'canary' }
+      steps {
+        container('kubectl') {
+          // Change deployed image in canary to the one we just built
+          echo "Deploy canary"
+        }
+      }
+    }
+    stage('Deploy Production') {
+      // Production branch
+      when { branch 'master' }
+      steps{
+        container('kubectl') {
+        // Change deployed image in canary to the one we just built
+          echo "Deploy production"
+        }
+      }
+    }
+    stage('Deploy Dev') {
+      // Developer Branches
+      when {
+        not { branch 'master' }
+        not { branch 'canary' }
+      }
+      steps {
+        container('kubectl') {
+          echo "Deploy dev"
+        }
+      }
+    }
+  }
+}
