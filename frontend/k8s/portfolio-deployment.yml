@@ -1,0 +1,23 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: portfolio
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: portfolio
+      labels:
+        app: portfolio
+    spec:
+      containers:
+        - image: mravatomski/portfolio:v15
+          name: portfolio
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
